@@ -3,7 +3,7 @@ package com.example.capstone.dao
 import androidx.room.*
 
 @Dao
-interface listDao {
+interface ListDao {
 
     @Query("Select * FROM armylist")
     fun getAllArmyLists(): List<com.example.capstone.models.List>
