@@ -6,14 +6,14 @@ import androidx.room.*
 interface ListDao {
 
     @Query("Select * FROM armylist")
-    fun getAllArmyLists(): List<com.example.capstone.models.List>
+    fun getAllArmyLists(): List<com.example.capstone.models.ArmyList>
 
     @Insert
-    fun insertArmyList(list: com.example.capstone.models.List)
+    fun insertArmyList(list: com.example.capstone.models.ArmyList)
 
     @Delete
-    fun deleteArmyList(list: com.example.capstone.models.List)
+    fun deleteArmyList(list: com.example.capstone.models.ArmyList)
 
     @Update
-    fun updateArmyList(list: com.example.capstone.models.List)
+    fun updateArmyList(list: com.example.capstone.models.ArmyList)
 }

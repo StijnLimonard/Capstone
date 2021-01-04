@@ -6,7 +6,7 @@ import androidx.room.PrimaryKey
 import kotlin.collections.List
 
 @Entity(tableName = "armyList")
-data class List(
+data class ArmyList(
     @PrimaryKey(autoGenerate=true)
     @ColumnInfo(name="id")
     var id:Long? = null,

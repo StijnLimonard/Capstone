@@ -5,9 +5,9 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.example.capstone.dao.ListDao
-import com.example.capstone.models.List
+import com.example.capstone.models.ArmyList
 
-@Database(entities = [List::class], version = 1, exportSchema = false)
+@Database(entities = [ArmyList::class], version = 1, exportSchema = false)
 abstract class ArmyListDatabase : RoomDatabase(){
 
     abstract fun listDao() : ListDao
