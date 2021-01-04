@@ -1,10 +1,8 @@
 package com.example.capstone.dao
 
-import androidx.room.Delete
-import androidx.room.Insert
-import androidx.room.Query
-import androidx.room.Update
+import androidx.room.*
 
+@Dao
 interface listDao {
 
     @Query("Select * FROM armylist")
@@ -18,6 +16,4 @@ interface listDao {
 
     @Update
     fun updateArmyList(list: com.example.capstone.models.List)
-
-
 }
