@@ -3,26 +3,19 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/FirstFragment">
-
+    app:startDestination="@id/armyListFragment2">
     <fragment
-        android:id="@+id/FirstFragment"
-        android:name="com.example.capstone.ListFragment"
-        android:label="@string/first_fragment_label"
-        tools:layout="@layout/listFragment">
-
-        <action
-            android:id="@+id/action_FirstFragment_to_SecondFragment"
-            app:destination="@id/SecondFragment" />
-    </fragment>
+        android:id="@+id/addArmylistFragment"
+        android:name="com.example.capstone.AddArmylistFragment"
+        android:label="fragment_add_armylist"
+        tools:layout="@layout/fragment_add_armylist" />
     <fragment
-        android:id="@+id/SecondFragment"
-        android:name="com.example.capstone.SecondFragment"
-        android:label="@string/second_fragment_label"
-        tools:layout="@layout/fragment_second">
-
+        android:id="@+id/armyListFragment2"
+        android:name="com.example.capstone.ArmyListFragment"
+        android:label="fragment_list"
+        tools:layout="@layout/fragment_list" >
         <action
-            android:id="@+id/action_SecondFragment_to_FirstFragment"
-            app:destination="@id/FirstFragment" />
+            android:id="@+id/action_armyListFragment2_to_addArmylistFragment"
+            app:destination="@id/addArmylistFragment" />
     </fragment>
 </navigation>

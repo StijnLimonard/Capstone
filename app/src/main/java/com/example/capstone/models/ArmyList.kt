@@ -12,9 +12,12 @@ data class ArmyList(
     var id:Long? = null,
 
     var listName : String,
-    var abilities: List<String>,
-    var round: Int,
-    var victoryPoints: Int,
-    var commandPoints: Int
+    var alliance: String,
+    var heroes: String,
+    var battleline: String,
+    var units: String,
+    var artillery: String,
+    var behemoths: String
+
     )
 

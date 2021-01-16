@@ -6,7 +6,18 @@
     <string name="second_fragment_label">Second Fragment</string>
     <string name="next">Next</string>
     <string name="previous">Previous</string>
+    <string name="round">Round</string>
+    <string name="victory_points">Victory Points:</string>
+    <string name="command_points">Command Points:</string>
+    <string name="abilities">abilities</string>
+    <string name="abilitie_name">abilitie name</string>
+    <string name="add_armyname">Enter your army name</string>
+    <string name="untis">units</string>
+    <string name="battleline">battleline</string>
+    <string name="heroes">heroes</string>
+    <string name="behemoths">behemoths</string>
+    <string name="artillery">artillery</string>
 
-    <string name="hello_first_fragment">Hello first fragment</string>
-    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    <string name="add_armyList">Add army to list</string>
+
 </resources>
