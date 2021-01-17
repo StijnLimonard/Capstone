@@ -2,13 +2,6 @@
     <string name="app_name">Capstone</string>
     <string name="action_settings">Settings</string>
     <!-- Strings used for fragments for navigation -->
-    <string name="first_fragment_label">First Fragment</string>
-    <string name="second_fragment_label">Second Fragment</string>
-    <string name="next">Next</string>
-    <string name="previous">Previous</string>
-    <string name="round">Round</string>
-    <string name="victory_points">Victory Points:</string>
-    <string name="command_points">Command Points:</string>
     <string name="abilities">abilities</string>
     <string name="abilitie_name">abilitie name</string>
     <string name="add_armyname">Enter your army name</string>

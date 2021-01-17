@@ -44,7 +44,6 @@ class ArmyListFragment : Fragment() {
     }
 
     private fun initViews() {
-        // Initialize the recycler view with a linear layout manager, adapter
         rvArmyLists.layoutManager =
                 LinearLayoutManager(context, RecyclerView.VERTICAL, false)
         rvArmyLists.adapter = armylistAdapter
@@ -52,6 +51,7 @@ class ArmyListFragment : Fragment() {
         createItemTouchHelper().attachToRecyclerView(rvArmyLists)
     }
 
+    //gets a list of armylists from the database.
     private fun getArmiesFromDatabase() {
         CoroutineScope(Dispatchers.Main).launch {
             val armies = withContext(Dispatchers.IO) {
@@ -63,7 +63,9 @@ class ArmyListFragment : Fragment() {
         }
     }
 
+    //handles the delete function when you swipe a card left or right
     private fun createItemTouchHelper(): ItemTouchHelper {
+        //detect the swipe
         val callback = object : ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT or ItemTouchHelper.RIGHT) {
             override fun onMove(
                     recyclerView: RecyclerView,
@@ -73,7 +75,7 @@ class ArmyListFragment : Fragment() {
                 return false
             }
 
-            // do stuff when swippedy swiped
+            //does the deleting when swiped
             override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
                 val position = viewHolder.adapterPosition
                 val armyToDelete = armylists[position]
