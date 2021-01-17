@@ -25,7 +25,20 @@ class MainActivity : AppCompatActivity() {
         fab.setOnClickListener {
             navController.navigate(R.id.action_armyListFragment2_to_addArmylistFragment)
         }
+
+        fabToggler()
     }
+
+    private fun fabToggler() {
+        navController.addOnDestinationChangedListener { _,       destination, _ ->
+            if (destination.id in arrayOf(R.id.addArmylistFragment)) {
+                fab.hide()
+            } else {
+                fab.show()
+            }
+        }
+    }
+
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         // Inflate the menu; this adds items to the action bar if it is present.

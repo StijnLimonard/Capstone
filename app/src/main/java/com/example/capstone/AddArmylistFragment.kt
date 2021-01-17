@@ -5,13 +5,28 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
+import android.widget.Toast
+import androidx.core.os.bundleOf
+import androidx.fragment.app.setFragmentResult
 import androidx.navigation.fragment.findNavController
+import com.example.capstone.models.ArmyList
+import com.example.capstone.repository.armylistRepository
+import kotlinx.android.synthetic.main.fragment_add_armylist.*
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 /**
  * A simple [Fragment] subclass as the second destination in the navigation.
  */
+
+const val REQ_ARMY_KEY = "req_armylist"
+const val BUNDLE_ARMY_KEY = "bundle_armylist"
+
 class AddArmylistFragment : Fragment() {
+
+    private lateinit var repository: armylistRepository
 
     override fun onCreateView(
             inflater: LayoutInflater, container: ViewGroup?,
@@ -24,8 +39,31 @@ class AddArmylistFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-//        view.findViewById<Button>(R.id.button_second).setOnClickListener {
-//            findNavController().navigate(R.id.action_SecondFragment_to_FirstFragment)
-//        }
+        repository = armylistRepository(requireContext())
+        btnAddArmylist.setOnClickListener{
+            onAddArmy()
+        }
+    }
+
+    private fun onAddArmy() {
+        val armylistName = txtArmyName.text.toString()
+        val heroes = txtHeroes.text.toString()
+        val battlelineUnits = txtBattleline.text.toString()
+        val units = txtunits.text.toString()
+        val armylistresponse = ArmyList(null, armylistName, alliance = "", heroes, battlelineUnits, units, artillery = "", behemoths = "")
+
+
+        if (armylistName.isNotBlank()){
+            CoroutineScope(Dispatchers.Main).launch{
+                withContext(Dispatchers.IO){
+                    repository.insertArmylist(armylistresponse)
+                }
+            }
+            findNavController().popBackStack()
+        }
+        else{
+            Toast.makeText(activity, R.string.not_valid, Toast.LENGTH_SHORT).show()
+        }
+
     }
 }

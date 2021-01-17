@@ -3,6 +3,7 @@ package com.example.capstone.repository
 import android.content.Context
 import com.example.capstone.dao.ListDao
 import com.example.capstone.database.ArmyListDatabase
+import com.example.capstone.models.ArmyList
 
 public class armylistRepository(context: Context) {
     private var listDao : ListDao
@@ -12,19 +13,19 @@ public class armylistRepository(context: Context) {
         listDao = armyListDatabase!!.listDao()
     }
 
-    fun getAllArmylists(): List<com.example.capstone.models.ArmyList> {
+    suspend fun getAllArmylists(): List<ArmyList> {
         return listDao.getAllArmyLists()
     }
 
-    fun insertArmylist(armylist: com.example.capstone.models.ArmyList) {
+    suspend fun insertArmylist(armylist: ArmyList) {
         listDao.insertArmyList(armylist)
     }
 
-    fun updateArmylist(armylist: com.example.capstone.models.ArmyList) {
+    suspend fun updateArmylist(armylist: ArmyList) {
         listDao.updateArmyList(armylist)
     }
 
-    fun deleteArmylist(armylist: com.example.capstone.models.ArmyList) {
+    suspend fun deleteArmylist(armylist: ArmyList) {
         listDao.deleteArmyList(armylist)
     }
 

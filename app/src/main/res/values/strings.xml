@@ -12,12 +12,14 @@
     <string name="abilities">abilities</string>
     <string name="abilitie_name">abilitie name</string>
     <string name="add_armyname">Enter your army name</string>
-    <string name="untis">units</string>
-    <string name="battleline">battleline</string>
+    <string name="units">units</string>
+    <string name="battleline">battleline units</string>
     <string name="heroes">heroes</string>
     <string name="behemoths">behemoths</string>
     <string name="artillery">artillery</string>
 
     <string name="add_armyList">Add army to list</string>
+    <string name="create_army">Create new Army list</string>
+    <string name="not_valid">entry was not valid please try again</string>
 
 </resources>
