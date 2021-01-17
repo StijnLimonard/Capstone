@@ -50,7 +50,8 @@ class AddArmylistFragment : Fragment() {
         val heroes = txtHeroes.text.toString()
         val battlelineUnits = txtBattleline.text.toString()
         val units = txtunits.text.toString()
-        val armylistresponse = ArmyList(null, armylistName, alliance = "", heroes, battlelineUnits, units, artillery = "", behemoths = "")
+        val alligence = txtArmyAlliegence.text.toString()
+        val armylistresponse = ArmyList(null, armylistName, alligence, heroes, battlelineUnits, units, artillery = "", behemoths = "")
 
 
         if (armylistName.isNotBlank()){

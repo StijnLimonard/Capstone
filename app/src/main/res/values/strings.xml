@@ -12,6 +12,7 @@
     <string name="abilities">abilities</string>
     <string name="abilitie_name">abilitie name</string>
     <string name="add_armyname">Enter your army name</string>
+    <string name="add_allience">Enter your army Alliegence</string>
     <string name="units">units</string>
     <string name="battleline">battleline units</string>
     <string name="heroes">heroes</string>

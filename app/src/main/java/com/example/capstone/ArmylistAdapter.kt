@@ -27,7 +27,8 @@ class ArmylistAdapter (private val armyList: List<ArmyList>) : RecyclerView.Adap
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
         fun databind(armylist: ArmyList) {
-            itemView.tvArmylist.text = armylist.listName
+            itemView.tvArmylistName.text = armylist.listName
+            itemView.tvArmylistAllegience.text = armylist.alliance
         }
     }
 

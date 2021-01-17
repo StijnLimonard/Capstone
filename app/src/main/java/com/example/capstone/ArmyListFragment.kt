@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.setFragmentResultListener
 import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.capstone.models.ArmyList
@@ -25,39 +26,35 @@ class ArmyListFragment : Fragment() {
 
     private lateinit var repository: armylistRepository
 
-    private val armylists : ArrayList<ArmyList> = arrayListOf()
-    private  val armylistAdapter = ArmylistAdapter(armylists)
+    private val armylists: ArrayList<ArmyList> = arrayListOf()
+    private val armylistAdapter = ArmylistAdapter(armylists)
 
     override fun onCreateView(
             inflater: LayoutInflater, container: ViewGroup?,
             savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_list, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initViews()
-        observeAddarmyResult()
         repository = armylistRepository(requireContext())
         getArmiesFromDatabase()
-
-
     }
 
     private fun initViews() {
         // Initialize the recycler view with a linear layout manager, adapter
         rvArmyLists.layoutManager =
-            LinearLayoutManager(context, RecyclerView.VERTICAL, false)
+                LinearLayoutManager(context, RecyclerView.VERTICAL, false)
         rvArmyLists.adapter = armylistAdapter
-        rvArmyLists.addItemDecoration(DividerItemDecoration(context,DividerItemDecoration.VERTICAL))
-        //createItemTouchHelper().attachToRecyclerView(rvReminders)
+        rvArmyLists.addItemDecoration(DividerItemDecoration(context, DividerItemDecoration.VERTICAL))
+        createItemTouchHelper().attachToRecyclerView(rvArmyLists)
     }
 
-    private fun getArmiesFromDatabase(){
+    private fun getArmiesFromDatabase() {
         CoroutineScope(Dispatchers.Main).launch {
-            val armies = withContext(Dispatchers.IO){
+            val armies = withContext(Dispatchers.IO) {
                 repository.getAllArmylists()
             }
             this@ArmyListFragment.armylists.clear()
@@ -66,20 +63,29 @@ class ArmyListFragment : Fragment() {
         }
     }
 
-    private fun observeAddarmyResult() {
-        setFragmentResultListener(REQ_ARMY_KEY) { key, bundle ->
-            bundle.get(BUNDLE_ARMY_KEY)?.let {
-                val army = it
+    private fun createItemTouchHelper(): ItemTouchHelper {
+        val callback = object : ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT or ItemTouchHelper.RIGHT) {
+            override fun onMove(
+                    recyclerView: RecyclerView,
+                    viewHolder: RecyclerView.ViewHolder,
+                    target: RecyclerView.ViewHolder
+            ): Boolean {
+                return false
+            }
+
+            // do stuff when swippedy swiped
+            override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
+                val position = viewHolder.adapterPosition
+                val armyToDelete = armylists[position]
                 CoroutineScope(Dispatchers.Main).launch {
                     withContext(Dispatchers.IO) {
-                        repository.insertArmylist(army as ArmyList)
+                        repository.deleteArmylist(armyToDelete)
                     }
                     getArmiesFromDatabase()
                 }
-
-            } ?: Log.e("ArmylistFragment", "Request triggered, but empty text!")
-
+            }
         }
+        return ItemTouchHelper(callback)
     }
 
 }
